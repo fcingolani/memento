@@ -45,7 +45,7 @@ func main() {
 		panic(err)
 	}
 
-	e.Debug = debug != "true"
+	e.Debug = debug == "true"
 	e.HideBanner = true
 
 	e.Validator = &CustomValidator{validator: validator.New()}

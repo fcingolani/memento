@@ -22,7 +22,7 @@ func NewScoreController(ds models.IDatastore) IScoreController {
 
 func (sc *scoreController) Add(c echo.Context) error {
 
-	s := new(models.Score)
+	s := &models.Score{}
 
 	if err := c.Bind(s); err != nil {
 		return err
@@ -41,7 +41,7 @@ func (sc *scoreController) Add(c echo.Context) error {
 
 func (sc *scoreController) Beatable(c echo.Context) error {
 
-	s := new(models.Score)
+	s := &models.Score{}
 
 	if err := c.Bind(s); err != nil {
 		return err
