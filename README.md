@@ -10,7 +10,7 @@ docker run -ti -p 3000:3000 fcingolani/memento
 
 ## Usage
 
-1. Add a new replay
+1. Add a new score
 
 ```
 > curl -i http://127.0.0.1:3000/scores -X POST -d "player_name=fcingolani&level_number=1&level_version=1&value=6500"
@@ -46,7 +46,7 @@ Content-Length: 0
 Content-Type: text/plain; charset=utf-8
 ```
 
-3. Find a replay to beat
+3. Find a score to beat
 
 ```
 > curl -i "http://127.0.0.1:3000/scores/_beatable?level_number=1&level_version=1&value=7000&type=lower"
@@ -88,7 +88,7 @@ You can use the following environment variables to configure the server:
 | Variable          | Description | Default Value
 |-                  |-            |-
 | DATABASE_PATH     | SQLite database path | ./db.sqlite
-| LISTEN_ADDRESS    | [TCP address to listen on](Server listen address) | :3000
+| LISTEN_ADDRESS    | [TCP address to listen on](https://golang.org/pkg/net/http/#Server) | :3000
 | DEBUG             | Enable or disable debug mode | false
 | MAX_UPLOAD_BYTES  | Max allowed file upload size in bytes | 1048576
 
