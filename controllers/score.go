@@ -8,6 +8,7 @@ import (
 )
 
 type IScoreController interface {
+	List(c echo.Context) error
 	Add(c echo.Context) error
 	Beatable(c echo.Context) error
 }
@@ -18,6 +19,18 @@ type scoreController struct {
 
 func NewScoreController(ds models.IDatastore) IScoreController {
 	return &scoreController{ds}
+}
+
+func (sc *scoreController) List(c echo.Context) error {
+
+	ss, err := sc.ds.FindScores()
+
+	if err != nil {
+		return err
+	}
+
+	return c.JSON(http.StatusOK, ss)
+
 }
 
 func (sc *scoreController) Add(c echo.Context) error {

@@ -22,6 +22,31 @@ const (
 	LowerScore  = -1
 )
 
+func (ds *datastore) FindScores() (*[]Score, error) {
+
+	q := "SELECT id, player_name, level_number, level_version, value FROM scores"
+
+	res, err := ds.Query(q)
+
+	if err != nil {
+		return nil, err
+	}
+
+	ss := []Score{}
+
+	for res.Next() {
+		var s Score
+		err = res.Scan(&s.ID, &s.PlayerName, &s.LevelNumber, &s.LevelVersion, &s.Value)
+		if err != nil {
+			return nil, err
+		}
+		ss = append(ss, s)
+	}
+
+	return &ss, nil
+
+}
+
 func (ds *datastore) CreateScore(s *Score) error {
 
 	s.File = &File{UploadTicket: uuid.NewV4()}
@@ -47,8 +72,6 @@ func (ds *datastore) CreateScore(s *Score) error {
 }
 
 func (ds *datastore) FindBeatableScore(s *Score, t int) (*Score, error) {
-
-	println(t)
 
 	var q string
 

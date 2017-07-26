@@ -59,6 +59,7 @@ func main() {
 	sc := controllers.NewScoreController(ds)
 	fc := controllers.NewFileController(ds, mub)
 
+	e.GET("/scores", sc.List)
 	e.POST("/scores", sc.Add)
 	e.GET("/scores/_beatable", sc.Beatable)
 

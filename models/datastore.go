@@ -7,6 +7,7 @@ import (
 )
 
 type IDatastore interface {
+	FindScores() (*[]Score, error)
 	CreateScore(*Score) error
 	FindBeatableScore(*Score, int) (*Score, error)
 	SaveFile(*File) error
