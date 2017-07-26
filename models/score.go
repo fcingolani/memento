@@ -71,14 +71,18 @@ func (ds *datastore) CreateScore(s *Score) error {
 
 }
 
-func (ds *datastore) FindBeatableScore(s *Score, t int) (*Score, error) {
+func (ds *datastore) FindBeatableScore(s *Score, t int, f bool) (*Score, error) {
 
-	var q string
+	q := "SELECT id, player_name, level_number, level_version, value FROM scores WHERE level_number = ? AND level_version = ? AND value < ?"
+
+	if f == true {
+		q += " AND file_data NOT NULL"
+	}
 
 	if t == LowerScore {
-		q = "SELECT id, player_name, level_number, level_version, value FROM scores WHERE level_number = ? AND level_version = ? AND value < ? ORDER BY value DESC LIMIT 1"
+		q += " ORDER BY value DESC LIMIT 1"
 	} else {
-		q = "SELECT id, player_name, level_number, level_version, value FROM scores WHERE level_number = ? AND level_version = ? AND value > ? ORDER BY value ASC LIMIT 1"
+		q += " ORDER BY value ASC LIMIT 1"
 	}
 
 	rows, err := ds.Query(q, s.LevelNumber, s.LevelVersion, s.Value)

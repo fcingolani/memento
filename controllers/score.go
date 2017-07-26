@@ -72,7 +72,9 @@ func (sc *scoreController) Beatable(c echo.Context) error {
 		t = models.HigherScore
 	}
 
-	b, err := sc.ds.FindBeatableScore(s, t)
+	f := c.QueryParam("has_file") == "true"
+
+	b, err := sc.ds.FindBeatableScore(s, t, f)
 
 	if err != nil {
 		return err
