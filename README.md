@@ -1,8 +1,14 @@
+# Memento
+
+[![Docker Automated build](https://img.shields.io/docker/automated/fcingolani/memento.svg)](https://hub.docker.com/r/fcingolani/memento/)
+
+Memento is a high-score server. It can also save your replay (or other binary) data.
+
 ## Installation
 
 ### Docker
 
-Run the `fcingolani/memento` image hosted on [Docker Cloud](https://hub.docker.com/r/fcingolani/memento/):
+Run the `fcingolani/memento` image hosted on [Docker Hub](https://hub.docker.com/r/fcingolani/memento/):
 
 ```
 docker run -ti -p 3000:3000 fcingolani/memento
@@ -92,6 +98,12 @@ You can use the following environment variables to configure the server:
 | DEBUG             | Enable or disable debug mode | false
 | MAX_UPLOAD_BYTES  | Max allowed file upload size in bytes | 1048576
 
+## FAQ
+
+### Why do you use 2 requests to save a replay, one to save the model and another to upload the file?
+
+This was made for [a friend](https://martincerdeira.itch.io/) who uses GameMaker. GM's http library doesn't support multipart requests.
+
 ## Todo
 
 _Not in priority order_
@@ -105,9 +117,4 @@ _Not in priority order_
 - ☐ Add PostgreSQL support.
 - ☐ Add CORS support.
 - ☐ Add Swagger file.
-
-## FAQ
-
-### Why do you use 2 requests to save a replay, one to save the model and another to upload the file?
-
-This was made for [a friend](https://martincerdeira.itch.io/) who uses GameMaker. GM's http library doesn't support multipart requests.
+- ☐ Add parameter to `_beatable` to filter scores that have a file.
