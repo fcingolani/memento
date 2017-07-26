@@ -45,7 +45,7 @@ func main() {
 		panic(err)
 	}
 
-	e.Debug = debug == "true"
+	e.Debug = debug != "true"
 	e.HideBanner = true
 
 	e.Validator = &CustomValidator{validator: validator.New()}
@@ -56,12 +56,14 @@ func main() {
 		panic(err)
 	}
 
-	rc := controllers.NewReplayController(ds, mub)
+	sc := controllers.NewScoreController(ds)
+	fc := controllers.NewFileController(ds, mub)
 
-	e.POST("/replays", rc.AddReplay)
-	e.PUT("/replays/:id/file", rc.SaveReplayFile)
-	e.GET("/replays/:id/file", rc.GetReplayFile)
-	e.GET("/replays/_tobeat/:level_number/:level_version/:time", rc.GetBeatableReplay)
+	e.POST("/scores", sc.Add)
+	e.GET("/scores/_beatable", sc.Beatable)
+
+	e.GET("/files/:id/data", fc.GetData)
+	e.PUT("/files/:id/data", fc.SaveData)
 
 	e.GET("/check", func(c echo.Context) error {
 		return c.NoContent(http.StatusOK)
