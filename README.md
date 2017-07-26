@@ -55,7 +55,7 @@ Content-Type: text/plain; charset=utf-8
 3. Find a score to beat
 
 ```
-> curl -i "http://127.0.0.1:3000/scores/_beatable?level_number=1&level_version=1&value=7000&type=lower"
+> curl -i "http://127.0.0.1:3000/scores/_beatable?level_number=1&level_version=1&value=7000&type=lower&has_file=true"
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=UTF-8
 Date: Wed, 26 Jul 2017 03:28:01 GMT
@@ -108,13 +108,13 @@ This was made for [a friend](https://martincerdeira.itch.io/) who uses GameMaker
 
 _Not in priority order_
 
-- ☑ Limit file uploads.
+- ☐ Add Swagger file.
 - ☐ Add a security middleware.
-- ☑ Change "time" for "value".
-- ☑ Add parameter to `_beatable` so you can choose if you want a bigger or smaller score to beat.
-- ☑ Further separate file uploads endpoints from score metadata.
 - ☐ Add MySQL support.
 - ☐ Add PostgreSQL support.
 - ☐ Add CORS support.
-- ☐ Add Swagger file.
-- ☐ Add parameter to `_beatable` to filter scores that have a file.
+- ☑ Limit file uploads.
+- ☑ Change "time" for "value".
+- ☑ Add parameter to `_beatable` so you can choose if you want a bigger or smaller score to beat.
+- ☑ Further separate file uploads endpoints from score metadata.
+- ☑ Add parameter to `_beatable` to filter scores that have a file.
