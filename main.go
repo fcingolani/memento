@@ -5,6 +5,8 @@ import (
 	"os"
 	"strconv"
 
+	_ "github.com/joho/godotenv/autoload"
+
 	"github.com/labstack/echo"
 
 	"gopkg.in/go-playground/validator.v9"
