@@ -89,14 +89,15 @@ Content-Type: text/plain; charset=utf-8
 
 ## Configuration
 
-You can use the following environment variables to configure the server:
+You can use the following environment variables to configure the server. You can also use a [`.env`](https://github.com/joho/godotenv) file.
 
-| Variable          | Description | Default Value
-|-                  |-            |-
-| DATABASE_PATH     | SQLite database path | ./db.sqlite
-| LISTEN_ADDRESS    | [TCP address to listen on](https://golang.org/pkg/net/http/#Server) | :3000
-| DEBUG             | Enable or disable debug mode | false
-| MAX_UPLOAD_BYTES  | Max allowed file upload size in bytes | 1048576
+| Variable              | Description | Default Value
+|-                      |-            |-
+| `CORS_ALLOWED_ORIGINS`  | Comma separated list of allowed origins for CORS. Won't enable CORS if not set. | Empty
+| `DATABASE_PATH`         | SQLite database path | `./db.sqlite`
+| `DEBUG`                 | Enable or disable debug mode | `false`
+| `LISTEN_ADDRESS`        | [TCP address to listen on](https://golang.org/pkg/net/http/#Server) | `:3000`
+| `MAX_UPLOAD_BYTES`      | Max allowed file upload size in bytes | `1048576`
 
 ## FAQ
 
@@ -113,6 +114,7 @@ _Not in priority order_
 - ☐ Add MySQL support.
 - ☐ Add PostgreSQL support.
 - ☐ Add CORS support.
+- ☐ Better error descriptions.
 - ☑ Limit file uploads.
 - ☑ Change "time" for "value".
 - ☑ Add parameter to `_beatable` so you can choose if you want a bigger or smaller score to beat.
